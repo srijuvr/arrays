@@ -8,9 +8,42 @@
             //Selection(nums);
             //Bubble(nums);
             //Insertion(nums);
+            Quick(nums,0,nums.Length-1);
             foreach(int i in nums){
                 Console.Write(i+",");
             }
+        }
+        public static void Quick(int[] nums,int beg, int end)
+        {
+            if(beg<end)
+			{
+            int pivotPos=Partition(nums,beg,end);
+            Quick(nums,beg,pivotPos-1);
+            Quick(nums,pivotPos+1,end);
+			}
+            
+        }
+        public static int Partition(int[] nums, int beg, int end)
+        {
+            
+           
+
+               int pivot= nums[beg];
+               int i=beg+1;
+               int j=end;
+               while(i<j){
+                  while(i<=end && nums[i]<pivot){
+                      i++;
+                  }
+                  while(j>beg && nums[j]>pivot){
+                      j--;
+                  }
+                  if(i<j){
+                    swap(nums,i,j);
+                  }
+               }
+              swap(nums,beg,j);
+			 return j;
         }
         public static void Insertion(int[] nums)
         {
